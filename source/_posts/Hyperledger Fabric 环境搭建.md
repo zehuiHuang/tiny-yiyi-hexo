@@ -9,7 +9,7 @@ copyright: true
 ## 首先安装好Ubuntu环境
 ## GO环境安装
 ```
- wget https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
+$ wget https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
 ```
 > 如果命令下载不下来,可先浏览器手动下载下来并解压，解压命令和路径为：
 
@@ -29,66 +29,70 @@ $ vim  ~/.profile
 $ source ~/.profile 
 ```
 
-> 普通用户下-----命令:
+> 普通用户下-----命令
 
 ```
 $ vim  /etc/profile
 export PATH=$PATH:/usr/local/go/bin
 $ source /etc/profile
 ```
- <!-- more -->
+<!-- more -->
 
 > 由于我们把go的目录GOPATH设置为当前用户的文件夹下，所以记得创建go文件夹 执行：
+
 ```
-cd ~
-mkdir go
+$ cd ~
+$ mkdir go
 ```
 > 检查go的环境变量是否生效,提示：stat test.go: no such file or directory 表示已经ok
+
 ```
 $ go run test.go
 stat test.go: no such file or directory
 ```
 ## 安装docker
 ```
-curl -fsSL https://get.docker.com/ | sh  或者 curl -sSL https://get.daocloud.io/docker | sh
+$ curl -fsSL https://get.docker.com/ | sh  或者 curl -sSL https://get.daocloud.io/docker | sh
 ```
 > 修改当前用户权限
 ```shell
-sudo usermod -aG docker huangzehui  #huangzehui改成自己的当前用户名
+$ sudo usermod -aG docker huangzehui  #huangzehui改成自己的当前用户名
 ```
 >  添加阿里云的Docker Hub镜像（我自己的镜像）
 ```
- sudo mkdir -p /etc/docker
-   sudo tee /etc/docker/daemon.json <<-'EOF'
+$ sudo mkdir -p /etc/docker
+$   sudo tee /etc/docker/daemon.json <<-'EOF'
   {
    "registry-mirrors": ["https://enw355y4.mirror.aliyuncs.com"]
   }
   EOF
-  sudo systemctl daemon-reload
-  sudo systemctl restart docker
+$  sudo systemctl daemon-reload
+$  sudo systemctl restart docker
   ```
   ## Docker-Compose的安装
   ```
-  sudo apt-get install python-pip
-  curl -L https://get.daocloud.io/docker/compose/releases/download/1.12.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-  sudo mv ~/docker-compose /usr/local/bin/docker-compose
-  chmod +x /usr/local/bin/docker-compose
+ $ sudo apt-get install python-pip
+ $ curl -L https://get.daocloud.io/docker/compose/releases/download/1.12.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+ $ sudo mv ~/docker-compose /usr/local/bin/docker-compose
+ $ chmod +x /usr/local/bin/docker-compose
   ```
  ## Fabric源码下载（目前用的是1.0版本）
   
-  ```
-mkdir -p ~/go/src/github.com/hyperledger
-cd ~/go/src/github.com/hyperledger
-git clone https://github.com/hyperledger/fabric.git
-cd ~/go/src/github.com/hyperledger/fabric
-git checkout v1.0.0
+ ```
+$ mkdir -p ~/go/src/github.com/hyperledger
+$ cd ~/go/src/github.com/hyperledger
+$ git clone https://github.com/hyperledger/fabric.git
+$ cd ~/go/src/github.com/hyperledger/fabric
+$ git checkout v1.0.0
   ```
  ## Fabric Docker镜像的下载
-> 在下载镜像的时候可以用阿里云的,下载的比较快，可以手动修改/etc/apt/source.list，具体内容搜一下，修改之后执行： 
+> 在下载镜像的时候可以用阿里云的,下载的比较快，可以手动修改/etc/apt/source.list，具体内容搜一下，修改之后执行
+
 ```
 $ sudo apt-get update
 ```
 > (在本次下载的时候有些包下载不下来404,)，可以在系统中设置-软件和更新，设置成主服务器，执行
+
 ```
 $ sudo -apt-get update
 $ cd ~/go/src/github.com/hyperledger/fabric/examples/e2e_cli/
@@ -147,13 +151,14 @@ $ ./network_setup.sh up
 
 ```
   > 关掉之前启动的Fabric网络命令
+  
   ```
-  ./network_setup.sh down
+ $ ./network_setup.sh down
   ```
 ## 执行demo 案例
 > 另外打开一个终端，进入docker的cli
   ```
-  docker exec -it cli bash
+ $ docker exec -it cli bash
   ```
  > 查询a账户余额90
  ```
@@ -171,7 +176,7 @@ Query Result: 90
  ```
   > 查询b账户的余额210
   ```
-  $ peer chaincode query -C mychannel -n mycc -c '{"Args":["query","b"]}'
+$ peer chaincode query -C mychannel -n mycc -c '{"Args":["query","b"]}'
 2018-09-18 05:32:31.062 UTC [msp] GetLocalMSP -> DEBU 001 Returning existing local MSP
 2018-09-18 05:32:31.062 UTC [msp] GetDefaultSigningIdentity -> DEBU 002 Obtaining default signing identity
 2018-09-18 05:32:31.062 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 003 Using default escc
@@ -184,7 +189,7 @@ Query Result: 210
   ```
  >  转给b账户10
  ```
- $ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n mycc -c '{"Args":["invoke","a","b","10"]}'
+$ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n mycc -c '{"Args":["invoke","a","b","10"]}'
  2018-09-18 05:34:13.714 UTC [msp] GetLocalMSP -> DEBU 001 Returning existing local MSP
 2018-09-18 05:34:13.714 UTC [msp] GetDefaultSigningIdentity -> DEBU 002 Obtaining default signing identity
 2018-09-18 05:34:13.722 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 003 Using default escc
