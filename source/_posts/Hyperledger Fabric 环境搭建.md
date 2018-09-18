@@ -135,11 +135,13 @@ hyperledger/fabric-baseos                    x86_64-0.3.1        4b0cab202084   
 
 ```
   ## 启动Fabric网络
+  
   ```
-$ cd ~/go/src/github.com/hyperledger/fabric/examples/e2e_cli/
-$ ./network_setup.sh up
+$  cd ~/go/src/github.com/hyperledger/fabric/examples/e2e_cli/
+$  ./network_setup.sh up
   ```
 > 执行后无报错，有如下的打印END-E2E的样式展示（如果报错比如找不到cli等应该时安装docker时没有把镜像下载全或者时docker没有正常安装）
+
 ```
 2018-09-18 05:24:22.601 UTC [main] main -> INFO 007 Exiting.....
 ===================== Query on PEER3 on channel 'mychannel' is successful ===================== 
@@ -162,10 +164,12 @@ $ ./network_setup.sh up
   ```
 ## 执行demo 案例
 > 另外打开一个终端，进入docker的cli
+
   ```
  $ docker exec -it cli bash
   ```
  > 查询a账户余额90
+ 
  ```
 $ peer chaincode query -C mychannel -n mycc -c '{"Args":["query","a"]}'
 
@@ -180,6 +184,7 @@ Query Result: 90
 
  ```
   > 查询b账户的余额210
+  
   ```
 $ peer chaincode query -C mychannel -n mycc -c '{"Args":["query","b"]}'
 2018-09-18 05:32:31.062 UTC [msp] GetLocalMSP -> DEBU 001 Returning existing local MSP
@@ -193,6 +198,7 @@ Query Result: 210
 
   ```
  >  转给b账户10
+ 
  ```
 $ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n mycc -c '{"Args":["invoke","a","b","10"]}'
  2018-09-18 05:34:13.714 UTC [msp] GetLocalMSP -> DEBU 001 Returning existing local MSP
@@ -209,6 +215,7 @@ $ peer chaincode invoke -o orderer.example.com:7050 --tls true --cafile /opt/gop
 
  ```
   > 之后从新执行 查询a和b的余额会发现a的账户少了10，而b的账户多了10
+  
   ```
 $ peer chaincode query -C mychannel -n mycc -c '{"Args":["query","a"]}'
 2018-09-18 05:37:50.416 UTC [msp] GetLocalMSP -> DEBU 001 Returning existing local MSP
