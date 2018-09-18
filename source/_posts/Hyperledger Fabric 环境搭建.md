@@ -36,7 +36,8 @@ $ vim  /etc/profile
 export PATH=$PATH:/usr/local/go/bin
 $ source /etc/profile
 ```
-<-- more -->
+ <!-- more -->
+
 > 由于我们把go的目录GOPATH设置为当前用户的文件夹下，所以记得创建go文件夹 执行：
 ```
 cd ~
