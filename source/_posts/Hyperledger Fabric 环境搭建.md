@@ -50,6 +50,7 @@ $ mkdir go
 $ go run test.go
 stat test.go: no such file or directory
 ```
+
 ## 安装docker
 
 ```
@@ -57,7 +58,7 @@ $ curl -fsSL https://get.docker.com/ | sh  或者 curl -sSL https://get.daocloud
 ```
 
 > 修改当前用户权限
-```shell
+```
 $ sudo usermod -aG docker huangzehui  #huangzehui改成自己的当前用户名
 ```
 >  添加阿里云的Docker Hub镜像（我自己的镜像）
