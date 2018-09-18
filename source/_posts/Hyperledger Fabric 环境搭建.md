@@ -58,10 +58,12 @@ $ curl -fsSL https://get.docker.com/ | sh  或者 curl -sSL https://get.daocloud
 ```
 
 > 修改当前用户权限
+
 ```
 $ sudo usermod -aG docker huangzehui  #huangzehui改成自己的当前用户名
 ```
 >  添加阿里云的Docker Hub镜像（我自己的镜像）
+
 ```
 $ sudo mkdir -p /etc/docker
 $   sudo tee /etc/docker/daemon.json <<-'EOF'
