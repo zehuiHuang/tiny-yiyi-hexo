@@ -134,6 +134,8 @@ hyperledger/fabric-ca                        x86_64-1.0.0        a15c59ecda5b   
 hyperledger/fabric-baseos                    x86_64-0.3.1        4b0cab202084        16 months ago       157MB
 
 ```
+当然，也可以运行Fabric源码自身提供的一些可脚本脚本 比如fabric-samples 1.2版本的 scripts/bootstrap.sh脚本，或者fabric源码scripts/bootstrap.sh脚本 以及其他语言写的jdk 都有一些脚本。
+
   ## 启动Fabric网络
   
   ```
