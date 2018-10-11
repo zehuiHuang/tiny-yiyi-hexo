@@ -5,10 +5,11 @@ tags: [Fabric go]
 categories: Hyperledger
 copyright: true
 ---
+
 >  Hyperledger Fabric编写智能合约目前主流是用go语言写的，关于go语言的基本语法和使用我会专门再写几章来介绍。该案例是在fabric-samples项目的基础上，来进行启动网络、编译安装链码、调用链码的。
 >  当然在这之前还得安装好本地的Hyperledger Fabric开发环境(包括GO、Docker、镜像，jdk等)，本地开发环境参考地址：[快来点我](http://www.tiny-yiyi.com/2018/09/18/Hyperledger%20Fabric%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#more)
 >  项目都是在终端操作，并且需要启动三个终端。
-# 在fbric-samples中创建go文件，编写链码（智能合约）
+# 在fabric-samples中创建go文件，编写链码（智能合约）
 ```
 cd ～
 git clone https://github.com/hyperledger/fabric-samples.git
